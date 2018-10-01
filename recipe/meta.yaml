@@ -1,13 +1,13 @@
 {% set name = "pyct" %}
-{% set version = "0.4.3" %}
-{% set sha256 = "2e74b0bf43d7428a76d0dc6ecb8b8949f090f25e286bc44682de05a74ff89eab" %}
+{% set version = "0.4.5" %}
+{% set sha256 = "ba0fb1bbb84b06fe9a56a31e57ffab059830ee47838bee2386a77a2be8b47619" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
@@ -16,9 +16,11 @@ build:
 
 requirements:
   host:
+    - param >=1.7.0
     - python
     - pip
   run:
+    - param >=1.7.0
     - python
     - pyyaml
     - requests
@@ -32,7 +34,7 @@ about:
   home: http://github.com/pyviz/pyct
   license: BSD 3-Clause
   license_family: BSD
-  license_file: LICENSE
+  license_file: LICENSE.txt
   summary: python package common tasks for users (e.g. copy examples, fetch data, ...)
 
 extra:
