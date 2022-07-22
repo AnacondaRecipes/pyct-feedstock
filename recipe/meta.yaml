@@ -11,31 +11,45 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  number: 1
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  entry_points:
+    - pyct=pyct.__main__:main
 
 requirements:
   host:
     - param >=1.7.0
     - python
     - pip
+    - setuptools >=30.3.0
+    - wheel
   run:
     - param >=1.7.0
     - python
+    # extras_require for 'cmd':
     - pyyaml
     - requests
 
 test:
   imports:
     - pyct
+    - pyct.build
     - pyct.cmd
+  requires:
+    - pip
+  commands:
+    - pip check || true    # [not win]
+    - pip check || exit 0  # [win]
+    - pyct --help
 
 about:
-  home: http://github.com/pyviz/pyct
-  license: BSD 3-Clause
+  home: https://github.com/pyviz/pyct
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
   summary: python package common tasks for users (e.g. copy examples, fetch data, ...)
+  dev_url: https://github.com/pyviz/pyct
+  doc_url: https://github.com/pyviz-dev/pyct/blob/master/README.md
 
 extra:
   recipe-maintainers:
