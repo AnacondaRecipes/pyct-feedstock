@@ -1,6 +1,6 @@
 {% set name = "pyct" %}
-{% set version = "0.4.8" %}
-{% set sha256 = "23d7525b5a1567535c093aea4b9c33809415aa5f018dd77f6eb738b1226df6f7" %}
+{% set version = "0.5.0" %}
+{% set sha256 = "dd9f4ac5cbd8e37c352c04036062d3c5f67efec76d404761ef16b0cbf26aa6a0" %}
 
 package:
   name: {{ name }}
