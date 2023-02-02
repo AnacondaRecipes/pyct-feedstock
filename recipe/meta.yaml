@@ -39,9 +39,7 @@ test:
   requires:
     - pip
   commands:
-    - pip check || true    # [not win]
-    - pip check || exit 0  # [win]
-    - pyct --help
+    - pip check
 
 about:
   home: https://github.com/pyviz/pyct
