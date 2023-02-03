@@ -1,6 +1,6 @@
 {% set name = "pyct" %}
-{% set version = "0.4.8" %}
-{% set sha256 = "23d7525b5a1567535c093aea4b9c33809415aa5f018dd77f6eb738b1226df6f7" %}
+{% set version = "0.5.0" %}
+{% set sha256 = "dd9f4ac5cbd8e37c352c04036062d3c5f67efec76d404761ef16b0cbf26aa6a0" %}
 
 package:
   name: {{ name }}
@@ -11,17 +11,18 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
+  skip: True  # [py<37]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   entry_points:
     - pyct=pyct.__main__:main
 
 requirements:
   host:
-    - param >=1.7.0
+    - param 1.8.2
     - python
     - pip
-    - setuptools >=30.3.0
+    - setuptools >=61.0
     - wheel
   run:
     - param >=1.7.0
@@ -38,12 +39,16 @@ test:
   requires:
     - pip
   commands:
-    - pip check || true    # [not win]
-    - pip check || exit 0  # [win]
-    - pyct --help
+    - pip check
 
 about:
   home: https://github.com/pyviz/pyct
+  description: |
+    A utility package that includes:
+    pyct.cmd: Makes various commands available to other packages. (Currently no sophisticated plugin system, just a try import/except in the other packages.) 
+    The same commands are available from within python. Can either add new subcommands to an existing argparse based command if the module has an existing command, 
+    or create the entire command if the module has no existing command. Currently, there are commands for copying examples and fetching data. See
+    pyct.build: Provides various commands to help package building, primarily as a convenience for project maintainers.
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
