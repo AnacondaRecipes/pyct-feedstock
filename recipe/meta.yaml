@@ -1,6 +1,5 @@
 {% set name = "pyct" %}
-{% set version = "0.5.0" %}
-{% set sha256 = "dd9f4ac5cbd8e37c352c04036062d3c5f67efec76d404761ef16b0cbf26aa6a0" %}
+{% set version = "0.6.0" %}
 
 package:
   name: {{ name }}
@@ -8,22 +7,21 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: d4e513b2cf35b6165605ae5fce5f2a49985bc67473c579de85134b8c71d374a8
 
 build:
   number: 0
   skip: True  # [py<37]
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - pyct=pyct.__main__:main
 
 requirements:
   host:
-    - param 1.8.2
     - python
     - pip
-    - setuptools >=61.0
-    - wheel
+    - hatchling >=1.25.0
+    - hatch-vcs >=0.4.0
   run:
     - param >=1.7.0
     - python
@@ -42,7 +40,7 @@ test:
     - pip check
 
 about:
-  home: https://github.com/pyviz/pyct
+  home: https://github.com/holoviz-dev/pyct
   description: |
     A utility package that includes:
     pyct.cmd: Makes various commands available to other packages. (Currently no sophisticated plugin system, just a try import/except in the other packages.) 
@@ -53,8 +51,8 @@ about:
   license_family: BSD
   license_file: LICENSE.txt
   summary: python package common tasks for users (e.g. copy examples, fetch data, ...)
-  dev_url: https://github.com/pyviz/pyct
-  doc_url: https://github.com/pyviz-dev/pyct/blob/master/README.md
+  dev_url: https://github.com/holoviz-dev/pyct
+  doc_url: https://github.com/holoviz-dev/pyct/blob/main/README.md
 
 extra:
   recipe-maintainers:
