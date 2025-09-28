@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   skip: True  # [py<37]
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - pyct=pyct.__main__:main
 
